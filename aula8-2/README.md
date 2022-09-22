@@ -1,6 +1,6 @@
 # Overcharging Methods
 
-## Different Signatures
+## Different Signaturesg
 In this case, the signature of a method is represented by the number of parameters and by the type of the parameters.
 
 ```java
