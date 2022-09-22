@@ -1,4 +1,4 @@
-public class UseData {
+public class UseDate {
     public static void main(String[] args){
         Date d = new Date();
         d.changeDate(31);
