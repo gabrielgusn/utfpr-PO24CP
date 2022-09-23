@@ -9,11 +9,19 @@ public class Roda {
         this.calibragemPneu = r.nextBoolean();
     }
 
-    public void calibrar(){
-        this.calibragemPneu = true;
+    public void setCalibragem(boolean bool){
+        this.calibragemPneu = bool;
     }
 
-    private void esvaziarPneu(){
-        this.calibragemPneu = false;
+    public boolean getCalibragem(){
+        return this.calibragemPneu;
     }
+
+    public String toString(){
+        return calibragemPneu ? "Pneu calibrado" : "Pneu vazio";
+    }
+    
+    // private void esvaziarPneu(){
+    //     this.calibragemPneu = false;
+    // }
 }
