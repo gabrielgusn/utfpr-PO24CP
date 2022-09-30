@@ -5,6 +5,9 @@ public class UsaSimulador {
             sim.incluirVeiculo();
         }
         
+        sim.moveRandom();
+        sim.moveRandom();
         sim.imprimirPista();
+
     }
 }

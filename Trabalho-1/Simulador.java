@@ -8,6 +8,11 @@ public class Simulador {
         qtiDeVeiculos = 0;
     }
 
+    public void moveRandom(){
+        // Random r = new Random();
+        veiculos[5].mover();
+    }
+
     public void incluirVeiculo(){
         if(qtiDeVeiculos == 0){
             veiculos[0] = new Carro();
