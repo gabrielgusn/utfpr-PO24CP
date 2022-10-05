@@ -5,7 +5,7 @@ public class Carro {
     private String desenho;
     private int distanciaPercorrida;
     private Roda[] rodas = new Roda[4];
-    private Double combustivel;
+    private double combustivel;
     private double precoVenda;
     private boolean ipvaPago;
 
@@ -18,6 +18,8 @@ public class Carro {
         this.distanciaPercorrida = 0;
         this.desenho = sorteiaModelo();
         this.id = r.nextInt(100);
+        for(int i = 0; i < 4; i++)
+            rodas[i] = new Roda();
     }
 
     public Carro(int id){
@@ -29,24 +31,26 @@ public class Carro {
         this.distanciaPercorrida = 0;
         this.desenho = sorteiaModelo();
         this.id = id;
+        for(int i = 0; i < 4; i++)
+            rodas[i] = new Roda();
     }
 
     public void mover(){
-        // if(this.combustivel >= 0.55 && this.ipvaPago && confereCalibragens()){
+        if(this.combustivel >= 0.55 && this.ipvaPago && confereCalibragens()){
             this.desenho = desenho.replaceAll("\n", "\n     ");
             this.distanciaPercorrida+=1;
-        // }
-        // else{
-        //     if(this.combustivel < 0.55){
-        //         System.out.println("Veiculo" + id + "sem combustivel");
-        //     } 
-        //     if(!this.ipvaPago){
-        //         System.out.println("Veiculo" + id + "nao esta regularizado");
-        //     } 
-        //     if(!this.confereCalibragens()){
-        //         System.out.println("Pneus do veiculo" + this.id + "nao estao calibradas!");
-        //     }
-        // }
+        }
+        else{
+            if(this.combustivel < 0.55){
+                System.out.println("Veiculo " + id + " sem combustivel");
+            } 
+            if(!this.ipvaPago){
+                System.out.println("Veiculo " + id + " nao esta regularizado");
+            } 
+            if(!this.confereCalibragens()){
+                System.out.println("Pneus do veiculo " + this.id + " nao estao calibradas!");
+            }
+        }
     }
 
     public void abastecerVeiculo(){
@@ -65,13 +69,42 @@ public class Carro {
 
     public boolean confereCalibragens(){
         for(int i = 0; i<4; i++){
-            if(!rodas[i].getCalibragem()){
+            if(rodas[i].getCalibragem() == false){
                 return false;
             }
         }
         return true;
     }
     
+    public int getId(){
+        return this.id;
+    }
+    
+    public double getPrecoVenda(){
+        return this.precoVenda;
+    }
+    
+    public int getDistancia(){
+        return this.distanciaPercorrida;
+    }
+    
+    public void getEstadoRodas(){
+        for(Roda roda : rodas){
+            System.out.print(roda.getCalibragem());
+        }
+    }
+    
+    public double getCombustivel(){
+        return this.combustivel;
+    }
+    
+    public boolean getIpva(){
+        return this.ipvaPago;
+    }
+    
+    public String toString(){
+        return "id:" + id + "\n" + desenho + "\n combustivel: " + this.combustivel + "\n ipva: " + this.ipvaPago + "\n calibragem: " + this.confereCalibragens();
+    }
 
     public void desenhaCarro(){
         System.out.print(this.desenho);
@@ -88,21 +121,5 @@ public class Carro {
         desenhos[5] = "\n   _______\n _/\\______\\__\n/ ,-. -|-  ,-.`-.\n`( o )----( o )-'\n  `-'      `-'\n\n";
         
         return desenhos[r.nextInt(6)];
-    }
-    
-    public int getId(){
-        return this.id;
-    }
-
-    public double getPrecoVenda(){
-        return this.precoVenda;
-    }
-
-    public int getDistancia(){
-        return this.distanciaPercorrida;
-    }
-
-    public String toString(){
-        return desenho;
     }
 }
