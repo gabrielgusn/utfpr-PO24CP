@@ -39,6 +39,8 @@ public class Carro {
         if(this.combustivel >= 0.55 && this.ipvaPago && confereCalibragens()){
             this.desenho = desenho.replaceAll("\n", "\n     ");
             this.distanciaPercorrida+=1;
+
+            System.out.println("Veiculo " + this.id + "movido!");
         }
         else{
             if(this.combustivel < 0.55){
@@ -61,6 +63,10 @@ public class Carro {
         for(int i = 0; i<4; i++){
             this.rodas[i].setCalibragem(true);
         }
+    }
+
+    public void calibrarPneuEspecifico(int index){
+        rodas[index].setCalibragem(true);
     }
 
     public void pagarIpva(){
