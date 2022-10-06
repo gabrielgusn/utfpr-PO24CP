@@ -1,6 +1,9 @@
+import java.io.Serializable;
 import java.util.Random;
 
-public class Carro {
+import javax.swing.JOptionPane;
+
+public class Carro implements Serializable{
     private int id;
     private String desenho;
     private int distanciaPercorrida;
@@ -17,7 +20,7 @@ public class Carro {
         this.precoVenda = 0.0;
         this.distanciaPercorrida = 0;
         this.desenho = sorteiaModelo();
-        this.id = r.nextInt(100);
+        this.id = r.nextInt(20);
         for(int i = 0; i < 4; i++)
             rodas[i] = new Roda();
     }
@@ -26,6 +29,7 @@ public class Carro {
         Random r = new Random();
     
         this.ipvaPago = r.nextBoolean();
+        if(ipvaPago == false)
         this.combustivel = 2.5;
         this.precoVenda = 0.0;
         this.distanciaPercorrida = 0;
@@ -40,17 +44,23 @@ public class Carro {
             this.desenho = desenho.replaceAll("\n", "\n     ");
             this.distanciaPercorrida+=1;
 
-            System.out.println("Veiculo " + this.id + "movido!");
+            System.out.println("\nVeiculo " + this.id + " movido!");
         }
         else{
             if(this.combustivel < 0.55){
-                System.out.println("Veiculo " + id + " sem combustivel");
+                System.out.println("\nVeiculo " + id + " sem combustivel\n");
             } 
             if(!this.ipvaPago){
-                System.out.println("Veiculo " + id + " nao esta regularizado");
+                System.out.println("\nVeiculo " + id + " nao esta regularizado\n");
+
+                int pagarIPVA = Integer.parseInt(JOptionPane.showInputDialog(null, "Deseja pagar o IPVA?", "0 ou 1"));
+                if(pagarIPVA == 1){
+                    this.pagarIpva();
+                    System.out.println("\nIPVA do veiculo ID " + this.id + " pago\n");
+                } 
             } 
             if(!this.confereCalibragens()){
-                System.out.println("Pneus do veiculo " + this.id + " nao estao calibradas!");
+                System.out.println("\nPneus do veiculo " + this.id + " nao estao calibradas!\n");
             }
         }
     }
@@ -109,7 +119,7 @@ public class Carro {
     }
     
     public String toString(){
-        return "id:" + id + "\n" + desenho + "\n combustivel: " + this.combustivel + "\n ipva: " + this.ipvaPago + "\n calibragem: " + this.confereCalibragens();
+        return "\n\tID:" + id + "\n" + desenho + "\n Combustivel: " + this.combustivel + "\n IPVA: " + this.ipvaPago + "\n Calibragem: " + this.confereCalibragens() + "\n";
     }
 
     public void desenhaCarro(){

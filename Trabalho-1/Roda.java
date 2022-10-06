@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Random;
 
-public class Roda {
+public class Roda implements Serializable{
     private boolean calibragemPneu;
 
     public Roda(){
