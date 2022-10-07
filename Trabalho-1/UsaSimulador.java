@@ -9,14 +9,14 @@ import java.io.FileInputStream;
 
 public class UsaSimulador {
     public static void main(String[] args){
-        // JOptionPane inputPane = new JOptionPane();
+        
         Scanner input = new Scanner(System.in);
         String opcao = "0";
         Simulador sim = new Simulador();
 
         while(true){
             if(Integer.parseInt(opcao) == 13) break;
-            // System.out.print("Escolha uma opcao: \n");
+            // System.out.print("Escolha uma opcao: \n"); //versao antiga funcionando somente no terminal, estava dando erro ao entrar novamente no loop, por isso optei por fazer utilizando o JOptionPane
             opcao = JOptionPane.showInputDialog(null, "Escolha uma opcao: ", "0");
             while(Integer.parseInt(opcao) < 1 || Integer.parseInt(opcao) >13 || opcao == ""){
                 opcao = JOptionPane.showInputDialog(null, "Opcao invalida, digite novamente: ", "0");
@@ -83,7 +83,7 @@ public class UsaSimulador {
         }
     }
 
-    public static void gravarVeiculosArq(Simulador sim){
+    public static void gravarVeiculosArq(Simulador sim){//grava os arquivos em um arquivo chamado simulador.dat
         File arquivo = new File("simulador.dat");
         try{
             FileOutputStream fout = new FileOutputStream(arquivo);
